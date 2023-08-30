@@ -9,16 +9,21 @@ const textareaEl = document.querySelector("textarea");
 let formData = { email: "", message: "" };
 
 
-
-
-const onLoadingPage = () => {
-    if (formData) {
-    emailEl.value = formData.email || '';
-    textareaEl.value = formData.message || '';
-  }
-};
-
 onLoadingPage();
+
+function onLoadingPage() {
+  const savedMessage = JSON.parse(localStorage.getItem("feedback-form-state"));
+  if (savedMessage === null) {
+    return;
+  }
+
+  textareaEl.value = savedMessage.message || '';
+  emailEl.value = savedMessage.email || '';
+  formData.email = savedMessage.email || '';
+  formData.message = savedMessage.message || '';
+}
+
+
 
 const onInput = (event) => {
     formData[event.target.name] = event.target.value;
