@@ -36,6 +36,7 @@ const onSubmit = (event) => {
     localStorage.removeItem("feedback-form-state");
     event.currentTarget.reset();
     console.log(formData);
+    formData = {};
 };
 
 
